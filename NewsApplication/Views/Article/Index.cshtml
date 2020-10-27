@@ -1,0 +1,40 @@
+﻿@model List<News.DAL.Models.Article>
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="main-wrapper">
+    @await Component.InvokeAsync("ArticlePage", Model)
+</div>
+<div class="row">
+    <div class="col-12 text-center">
+        <a class="btn btn-primary btn-load-more w-50" href="" id="btnLoadMore">Load More</a>
+        <h4 id="lblNoMoreResults"><i>No more results ...</i></h4>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        var page = @ViewBag.Page;
+        $(document).ready(function () {
+            $("#lblNoMoreResults").hide();
+            $("#btnLoadMore").on("click", function (e) {
+                e.preventDefault();
+                var url = '@Url.Action("LoadMore", "Article")';
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    data: { page: page },
+                    success: function (result) {
+                         page++;
+                        $(".main-wrapper").append(result);
+                    },
+                    error: function () {
+                        $("#btnLoadMore").hide();
+                        $("#lblNoMoreResults").show();
+                    }
+                    ,
+                });
+            });
+        });
+    </script>
+}

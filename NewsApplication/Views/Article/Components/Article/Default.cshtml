@@ -1,0 +1,41 @@
+﻿@model News.DAL.Models.Article
+<div class="card" data-aos="fade-up" data-aos-once="true" data-aos-duration="500">
+    <h2>
+        @Model.Title
+    </h2>
+
+    <div class="card-body">
+        <p>
+            @Model.Summary
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <i data-feather="clock" class="icon" stroke-width="1.5"></i>
+            @Model.PublishedDate.ToString("dd-MM-yyyy hh:mm tt")
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <br />
+            <i><strong>@Model.Author.Name</strong></i><br />
+            <i>@Model.Author.Description</i>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a class="float-right link" asp-area="" asp-route-id="@Model.Id" asp-controller="Article" asp-action="Details">Read more</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            @foreach (var keyword in Model.Keywords)
+            {
+                <span class="highlighted">@keyword</span>
+
+            }
+        </div>
+    </div>
+</div>

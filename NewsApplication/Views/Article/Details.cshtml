@@ -1,0 +1,31 @@
+﻿@model News.DAL.Models.Article
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<h1>@Model.Title</h1>
+<div class="row">
+    <div class="col-6">
+        <div>
+            <br />
+            <i data-feather="clock" class="icon" stroke-width="1.5"></i>
+            @Model.PublishedDate.ToString("dd-MM-yyyy hh:mm tt")
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="float-right">
+            <i><strong>@Model.Author.Name</strong></i><br />
+            <i>@Model.Author.Description</i>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <img class="w-100 article-img" src="~/images/Articles/@(Model.Id).jpg" alt="image not available" />
+    </div>
+</div>
+<p class="article-body">
+    @Model.Body
+</p>
+

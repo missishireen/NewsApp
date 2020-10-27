@@ -1,0 +1,5 @@
+﻿@model List<News.DAL.Models.Article>
+@foreach (var article in Model)
+{
+    @await Component.InvokeAsync("Article", article)
+}
